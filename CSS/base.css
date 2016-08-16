@@ -1,0 +1,44 @@
+body {
+  color: #323;
+  opacity: 0.7;
+  font-size: 100%;
+  font-family: "Open Sans Condensed; helvetica; serif;
+}
+
+header {
+  position: relative;
+  width: 100%;
+}
+
+header h1 {
+  position: absolute;
+  width: 75%;
+}
+
+header h2 {
+  position: absolute;
+  width 75%;
+}
+
+/*images============================================*/
+
+#me {
+  width: 25%;
+  height: 10%;
+
+}
+
+/*LINK STYLES=======================================*/
+
+a, a:link, a:active {
+  text-decoration: none;
+  color: grey;
+}
+
+a:hover, a:focus {
+  color: #325;
+}
+
+a:visited {
+  color: blue;
+}

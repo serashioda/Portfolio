@@ -1,0 +1,51 @@
+.site-header {
+  background: #357237;
+}
+
+/* Float main header to LEFT--> make room for hamburger menu. */
+.heading-group-h1 {
+  float: left;
+  padding: 0 0 .2em 1em;
+}
+
+/* Styling for the icon-menu class- hamburger menu- bigger + off to the RIGHT. */
+.icon-menu {
+  float: right;
+  font-size: 3em;
+}
+
+.main-nav {
+  padding: 0.1em;
+}
+
+/*  Hiding the main nav list b/c we expect UI to be a mobile device --> hence the new icon menu */
+.main-nav ul {
+  display: none;
+  padding: 0;
+  list-style: none;
+  clear: both;
+}
+
+#filters {
+  padding: 0;
+  list-style: none;
+}
+
+/*styling to fit ipad screen: 768px*/
+
+@media only screen and (min-width: 768px) {
+  .icon-menu {
+    display: none;
+  }
+  .main-nav ul {
+    display: inline;
+  }
+  .main-nav:hover ul {
+    display: inline;
+  }
+  .main-nav li {
+    display: inline;
+    padding: 0.5em;
+    float: right;
+  }
+}

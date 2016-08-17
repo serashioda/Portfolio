@@ -1,0 +1,86 @@
+. {
+  font-family: 'Ubuntu', sans-serif;
+  font-size: 12px;
+}
+
+body {
+  font-family: 'Ubuntu', sans-serif;
+  color: #323;
+  opacity: 0.8;
+  font-size: 100%;
+}
+
+main {
+  display: block;
+  padding-top: 1px;
+}
+
+header {
+  position: relative;
+  width: 100%;
+  height: 5%
+  /*background-image: url('images/scenic.jpg');
+  background-size: cover;*/
+}
+
+header h1 {
+  position: absolute;
+  width: 100%;
+}
+
+header h2 {
+  /*padding-top: 2em;*/
+  /*position: absolute;*/
+  width 75%;
+}
+
+.porttxt {
+  color: solid black;
+  font-weight: bolder;
+}
+
+#display {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin: 0 0 5% 0%;
+  padding: 5% 7% 0 5%;
+  max-height: 250px;
+  max-width: 75%;
+  border-width: 1px;
+  padding-left: 5%;
+}
+
+#me {
+  /*margin-top: 10%;*/
+  width: 15%;
+  height: auto;
+  border-radius: 25em;
+}
+
+#bento {
+  height: 350px;
+  width: 350px;
+}
+
+#scenic {
+  padding-top: 2%;
+  max-height: 325px;
+  width: 100%;
+}
+
+#block {
+  display: inline-block;
+}
+
+/*LINK STYLES
+=======================================*/
+
+a {
+  text-decoration: none;
+  color: #785;
+}
+
+a:hover {
+  color: #444;
+}

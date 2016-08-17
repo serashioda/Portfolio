@@ -1,8 +1,13 @@
+. {
+  font-family: 'Ubuntu', sans-serif;
+  font-size: 12px;
+}
+
 body {
+  font-family: 'Ubuntu', sans-serif;
   color: #323;
-  opacity: 0.7;
+  opacity: 0.8;
   font-size: 100%;
-  font-family: "Open Sans Condensed; helvetica; serif";
 }
 
 main {
@@ -21,28 +26,40 @@ header h1 {
 }
 
 header h2 {
-  position: absolute;
+  padding-top: 2em;
+  /*position: absolute;*/
   width 75%;
 }
 
 #me {
   width: 25%;
   height: auto;
-  padding-top: 100px;
+  padding-top: 2em;
+}
+
+#bento {
+  height: 350px;
+  width: 350px;
+}
+
+#scenic {
+  padding-top: 150px;
+  height: 350px;
+  width: 750px;
+}
+
+#block {
+  display: inline-block;
 }
 
 /*LINK STYLES
 =======================================*/
 
-a, a:link, a:active {
+a {
   text-decoration: none;
-  color: grey;
+  color: #785;
 }
 
-a:hover, a:focus {
-  color: #325;
-}
-
-a:visited {
-  color: blue;
+a:hover {
+  color: #444;
 }

@@ -10,12 +10,13 @@
 
 /* Styling for the icon-menu class- hamburger menu- bigger + off to the RIGHT. */
 .icon-menu {
+  display: block;
   float: right;
   font-size: 3em;
 }
 
 .main-nav {
-  padding: 0.1em;
+  padding: 0.2em;
 }
 
 /*  Hiding the main nav list b/c we expect UI to be a mobile device --> hence the new icon menu */
@@ -45,7 +46,7 @@
   }
   .main-nav li {
     display: inline;
-    padding: 0.5em;
+    padding: 0.3em;
     float: right;
   }
 }

@@ -25,6 +25,8 @@ Article.prototype.toHtml = function() {
   console.log($newArticle);
   // article category
   $newArticle.attr('data-category', this.category);
+  // article author
+  $newArticle.attr('data-author', this.author);
   // article title
   $newArticle.find('h1').text(this.title);
   // article author

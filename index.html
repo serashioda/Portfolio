@@ -20,7 +20,6 @@
             <li><a href="https://github.com/serashioda" class="icon-github">GitHub</a></li>
             <li><a href="https://www.linkedin.com/in/serashioda" target="_blank" class="icon-linkedin">LinkedIn</a></li>
             <li><a href="https://www.facebook.com/sera.smith3" class="icon-facebook2">Facebook</a></li>
-            <li><a href="#" class="icon-pacman">GitHub</a></li>
           </ul>
       </nav>
       <img src="images/scenic.jpg" id="scenic">
@@ -30,9 +29,43 @@
         </header>
       </section>
         <!-- <h1><img src="images/sera.jpg" id="me"/></h1> -->
+    <!-- // LAB 3 // -->
     <main>
+      <div>
+        <section id="articles" class="tab-content">
+          <!-- ////AUTHOR MENU//// -->
+          <ul id="filters">
+            <li>
+              <select id="author-filter">
+                <option value="">-- Filter by Authors --</option>
+              </select>
+            </li>
+
+         <!-- ////CATEGORY MENU//// -->
+          <li>
+            <select id="category-filter">
+              <option value="">-- Filter by Categories --</option>
+            </select>
+          </li>
+        </ul>
+
+        <article class="template" data-category="placeholder-category">
+          <header>
+            <h1>Title</h1>
+            <div class="byline">
+              By <address><a href="">Author Name</a></address>
+              published <time pubdate datetime="2000-01-01">Publish Time</time>
+            </div>
+          </header>
+          <section class="article-body"></section>
+          <a href="#" class="read-on">Read on &rarr;</a>
+        </article>
+      </section>
+    </div>
+ <!-- // LAB 03 // -->
+
       <div id = "display">
-        <img id="bento" src="images/bento.jpg" id="bento">
+        <a href="http://www.google.com"><img id="bento" src="images/bento.jpg" id="bento"/></a>
         <img id="center" src="http://placehold.it/350x250">
         <img id="right" src="http://placehold.it/350x250">
       </div>
@@ -55,6 +88,20 @@
           <img src="http://placehold.it/150x100">
         </section>
       </div>
+
+        <!--<section id="articles">
+          <article class="template" data-category="placeholder-category">
+            <header>
+              <h1>Title</h1>
+              <div class="byline">
+                By <address><a href="">Author Name</a></address>
+                published <time pubdate datetime="2000-01-01">Publish Time</time>
+              </div>
+            </header>
+            <section class="article-body"></section>
+          </article>
+        </section>-->
+
     </main>
     <footer>
       &copy; 2016 Sera Shioda Smith | Portfolio | CodeFellows 301
@@ -62,5 +109,6 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
     <script src="js/blogArticles.js"></script>
     <script src="js/article.js"></script>
+    <script src="js/articleView.js"></script>
   </body>
 </html>

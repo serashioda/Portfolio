@@ -45,13 +45,12 @@ articleView.handleCategoryFilter = function() {
   });
 };
 
-
-
 articleView.handleMainNav = function () {
   console.log('into handleMainNav');
   $('.main-nav').on('click', '.tab', function() {
     $('.tab-content').hide();
     $('#' + $(this).data('content')).fadeIn();
+    // $('main').find('#' + $id).fadeIn();
   });
   $('.main-nav .tab:first').click();
 };
@@ -66,8 +65,8 @@ articleView.setTeasers = function() {
 
 };
 
-articleView.populateFilters();
-articleView.handleMainNav();
-articleView.handleAuthorFilter();
+// articleView.populateFilters();
 articleView.handleCategoryFilter();
+articleView.handleAuthorFilter();
+articleView.handleMainNav();
 articleView.setTeasers();

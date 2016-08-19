@@ -45,8 +45,6 @@ articleView.handleCategoryFilter = function() {
   });
 };
 
-
-
 articleView.handleMainNav = function () {
   console.log('into handleMainNav');
   $('.main-nav').on('click', '.tab', function() {
@@ -67,8 +65,8 @@ articleView.setTeasers = function() {
 
 };
 
-articleView.populateFilters();
-articleView.handleMainNav();
-articleView.handleAuthorFilter();
+// articleView.populateFilters();
 articleView.handleCategoryFilter();
+articleView.handleAuthorFilter();
+articleView.handleMainNav();
 articleView.setTeasers();

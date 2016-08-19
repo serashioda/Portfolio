@@ -11,29 +11,37 @@ function Article (opts) {
   this.authorUrl = opts.authorUrl;
 }
 
-// USING JQUERY TO TO FILL IN TEMPLATE CLONE WITH PROPERTIES FROM THE PARTICULAR ARTICLE INSTANCE
+// ADD PROPERTIES USED BY TEMPLATE . EXCUTE LOGIC HERE SINCE TEMPLATE CAN'T HOLD JS LOGIC. ADD RESULT TO OBJECT AS NEW PROPERTY BY KEY IN TEMPLATE. //
 Article.prototype.toHtml = function() {
-  var $newArticle = $('article.template').clone();
-  console.log($newArticle);
-  // article category
-  $newArticle.attr('data-category', this.category);
-  // article author
-  $newArticle.attr('data-author', this.author);
-  // article title
-  $newArticle.find('h1').text(this.title);
-  // article author
-  $newArticle.find('.byline a').text(this.author);
-  // article auth url
-  $newArticle.find('.byline a').attr('href', this.authorUrl);
-  // article body
-  $newArticle.find('.article-body').html(this.body);
-  // publication date
-  $newArticle.find('time[pubdate]').attr('title', this.publishedOn);
-  // display the date as a relative number of 'days ago'
-  $newArticle.find('time').html('about ' + parseInt((new Date() - new Date(this.publishedOn))/60/60/24/1000) + ' days ago');
+  this.daysAgo = parseInt((new Date() - new Date(this.publishedOn))/60/60/24/1000);
+  this.publishStatus = this.publishedOn ? 'published ' + this.daysAgo + ' days ago' : '(draft)';
+  // TODO: DONE! Use handlebars to render your articles!
+  //       - Select your template from the DOM.
+  //       - Now "compile" your template with Handlebars.
+  //       - Don't forget to return your template for this article.
+  var source = $('#articles-template').html();
+  var templateRender = Handlebars.compile(source);
+  return templateRender(this);
+};
 
+  //  AUTHOR-FILTER FUNCTION //
+  Article.prototype.authorFilterToHtml = function(){
+    console.log('hello');
+    var source = $('#author-filter-template').html();
+    var templateRender = Handlebars.compile(source);
+    return templateRender(this);
+  };
+  // END AUTHOR-FILTER FUNCTION //
+  // //  CATEGORY-FILTER FUNCTION //
+  Article.prototype.categoryFilterToHtml = function(){
+    console.log('bye');
+    var source = $('#category-filter-template').html();
+    var templateRender = Handlebars.compile(source);
+    return templateRender(this);
+  };
+  // // END CATEGORY-FILTER FUNCTION //
 
-// removing class from this cloned article before rending current article to the DOM (b/c it is no longer a template)s
+// ** removing class from this cloned article before rending current article to the DOM (b/c it is no longer a template)s
   $newArticle.removeClass('template');
   return $newArticle;
 };
@@ -48,7 +56,9 @@ ourLocalData.forEach(function(theCurrentArticleObject) {
   articles.push(new Article(theCurrentArticleObject));
 });
 
-// append each article to HTML
-articles.forEach(function(article) {
-  $('#articles').append(article.toHtml());
+//LOOPS THROUGH ARRAY OF ARTICLES AND APPENDS RESPECTIVE PROPERTY TO APPROPRIATE DOM ELEMENT
+articles.forEach(function(a){
+  $('#articles').append(a.toHtml());
+  $('#author-filter').append(a.authorFilterToHtml());
+  $('#category-filter').append(a.categoryFilterToHtml());
 });

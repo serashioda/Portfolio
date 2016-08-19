@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+<head>
     <meta charset="UTF-8">
     <title>Sera Shioda Smith</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -11,6 +11,36 @@
     <link rel="stylesheet" href="styles/css/module.css">
     <link rel="icon" type="image/x-icon" href="https://i.imgur.com/7v5ASc8.png">
     <link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
+    <script id="articles-template" type="text/x-handlebars-template">
+          <article class="clearfix" data-author="{{author}}" data-category="{{category}}">
+            <header>
+              <h1>{{title}}</h1>
+              <div class="byline">
+                By <address><a href="{{authorUrl}}">{{author}}</a></address>
+                {{publishStatus}}
+              </div>
+            </header>
+            <section class="article-body">{{{body}}}</section>
+            <a href="#" class="read-on">Read on &rarr;</a>
+          </article>
+        </script>
+        <!--
+            STRETCH! Look at all that duplicated code in our
+            populateFilters method! Looks like a good opportunity
+            to use a template. Make two small templates for an
+            option element (one for author, one for category), and
+            render the list once you have data to populate it with.
+           -->
+        <!--////// BEGIN AUTHOR-FILTER TEMPLATE -->
+        <script id="author-filter-template" type="text/x-handlebars-template">
+          <option value="{{author}}">{{author}}</option>
+        </script>
+        <!--////// END AUTHOR-FILTER TEMPLATE -->
+        <!--////// BEGINE CATEGORY-FILTER TEMPLATE //////-->
+        <script id="category-filter-template" type="text/x-handlebars-template">
+          <option value="{{category}}">{{category}}</option>
+        </script>
+        <!--////// END CATEGORY-FILTER TEMPLATE //////-->
   </head>
   <body>
     <header>

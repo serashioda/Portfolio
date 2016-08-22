@@ -1,17 +1,16 @@
 //  Configure a view object, to hold all our functions for dynamic updates and article-related event handlers.
 var articleView = {};
 
-articleView.populateFilters = function() {
-  $('article').not('.template').each(function() {
-    var authorName, category, optionTag;
-    authorName = $(this).find('address a').text();
-    optionTag = '<option value="' + authorName + '">' + authorName + '</option>';
-    $('#author-filter').append(optionTag);
-    category = $(this).attr('data-category');
-    optionTag = '<option value="' + category + '">' + category + '</option>';
-    if ($('#category-filter option[value="' + category + '"]').length === 0) {
-      $('#category-filter').append(optionTag);
-    }
+articleView.render = function() {
+  articles.forEach(function(a) {
+    $('#articles').append(a.toHtml('#article-template'));
+    $('#author-filter').append(a.toHtml('#author-filter-template'));
+    if($('#category-filter option[value="' + a.category + '"]').length === 0) {
+      $('#category-filter').append(a.toHtml('#category-filter-template'));
+    };
+  });
+  $('pre code').each(function(i, block) {
+    hljs.highlightBlock(block);
   });
 };
 
@@ -19,12 +18,11 @@ articleView.handleAuthorFilter = function() {
   $('#author-filter').on('change', function() {
     if ($(this).val()) {
       console.log($(this).val());
-
       $('article').hide();
       $('article[data-author="' + $(this).val() + '"]').fadeIn();
-
     } else {
       $('articles').fadeIn();
+      $('article.template').hide();
     }
     $('#category-filter').val('');
   });

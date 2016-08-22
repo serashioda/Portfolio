@@ -1,31 +1,39 @@
 var articles = [];
 
 function Article (opts) {
-  for (keys in opts) {
-    this[keys] = opts[keys];
-  };
+  // TODO: DONE- Use the js object passed in to complete this constructor function:
+  // Save all the properties of 'opts' into 'this'
+  this.author = opts.author;
+  this.title = opts.title;
+  this.category = opts.category;
+  this.publishedOn = opts.publishedOn;
+  this.body = opts.body;
+  this.authorUrl = opts.authorUrl;
 }
 
+// ADD PROPERTIES USED BY TEMPLATE . EXCUTE LOGIC HERE SINCE TEMPLATE CAN'T HOLD JS LOGIC. ADD RESULT TO OBJECT AS NEW PROPERTY BY KEY IN TEMPLATE. //
 Article.prototype.toHtml = function(scriptTemplateId) {
-  var renderTemplate = Handlebars.compile($(scriptTemplateId).html());
-
+  var templateRender = Handlebars.compile($(scriptTemplateId).html());
 
   this.daysAgo = parseInt((new Date() - new Date(this.publishedOn))/60/60/24/1000);
-  if(this.daysAgo < 1) {
-    this.publishStatus = '(published today)';
-  } else {
-    this.publishStatus = this.publishedOn ? 'published ' + this.daysAgo + ' days ago' : '(draft)';
-  }
-  // TODO: Parse any markdown with marked!
-  this.body = marked(this.body);
+  this.publishStatus = this.publishedOn ? 'published ' + this.daysAgo + ' days ago' : '(draft)';
 
-  return renderTemplate(this);
+  return templateRender(this);
 };
 
-ourLocalData.sort(function(a,b) {
-  return (new Date(b.publishedOn)) - (new Date(a.publishedOn));
+// sorting article from newest
+ourLocalData.sort(function(firstElement, secondElement) {
+  return (new Date(secondElement.publishedOn)) - (new Date(firstElement.publishedOn));
 });
 
-ourLocalData.forEach(function(ele) {
-  articles.push(new Article(ele));
+//
+ourLocalData.forEach(function(theCurrentArticleObject) {
+  articles.push(new Article(theCurrentArticleObject));
+});
+
+//LOOPS THROUGH ARRAY OF ARTICLES AND APPENDS RESPECTIVE PROPERTY TO APPROPRIATE DOM ELEMENT
+articles.forEach(function(a){
+  $('#articles').append(a.toHtml());
+  $('#author-filter').append(a.authorFilterToHtml());
+  $('#category-filter').append(a.categoryFilterToHtml());
 });

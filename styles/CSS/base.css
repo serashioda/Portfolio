@@ -5,10 +5,10 @@
 
 body {
   font-family: 'Ubuntu', sans-serif;
-  /*color: #323;*/
+  color: #323;
   opacity: 0.8;
   font-size: 100%;
-  /*background-color: #C6E2F0;*/
+  background-color: #fff;
 }
 
 main {

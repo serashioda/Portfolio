@@ -1,44 +1,31 @@
 var articles = [];
 
 function Article (opts) {
-  // TODO: DONE- Use the js object passed in to complete this constructor function:
-  // Save all the properties of 'opts' into 'this'
-  this.author = opts.author;
-  this.title = opts.title;
-  this.category = opts.category;
-  this.publishedOn = opts.publishedOn;
-  this.body = opts.body;
-  this.authorUrl = opts.authorUrl;
+  for (keys in opts) {
+    this[keys] = opts[keys];
+  };
 }
 
-// ADD PROPERTIES USED BY TEMPLATE . EXCUTE LOGIC HERE SINCE TEMPLATE CAN'T HOLD JS LOGIC. ADD RESULT TO OBJECT AS NEW PROPERTY BY KEY IN TEMPLATE. //
 Article.prototype.toHtml = function(scriptTemplateId) {
-  var templateRender = Handlebars.compile($(scriptTemplateId).html());
+  var renderTemplate = Handlebars.compile($(scriptTemplateId).html());
+
 
   this.daysAgo = parseInt((new Date() - new Date(this.publishedOn))/60/60/24/1000);
-  this.publishStatus = this.publishedOn ? 'published ' + this.daysAgo + ' days ago' : '(draft)';
+  if(this.daysAgo < 1) {
+    this.publishStatus = '(published today)';
+  } else {
+    this.publishStatus = this.publishedOn ? 'published ' + this.daysAgo + ' days ago' : '(draft)';
+  }
+  // TODO: Parse any markdown with marked!
+  this.body = marked(this.body);
 
-  return templateRender(this);
+  return renderTemplate(this);
 };
 
-// ** removing class from this cloned article before rending current article to the DOM (b/c it is no longer a template)s
-  //$newArticle.removeClass('template');
-  //return $newArticle;
-//};
-
-// sorting article from newest
-ourLocalData.sort(function(firstElement, secondElement) {
-  return (new Date(secondElement.publishedOn)) - (new Date(firstElement.publishedOn));
+ourLocalData.sort(function(a,b) {
+  return (new Date(b.publishedOn)) - (new Date(a.publishedOn));
 });
 
-//
-ourLocalData.forEach(function(theCurrentArticleObject) {
-  articles.push(new Article(theCurrentArticleObject));
-});
-
-//LOOPS THROUGH ARRAY OF ARTICLES AND APPENDS RESPECTIVE PROPERTY TO APPROPRIATE DOM ELEMENT
-articles.forEach(function(a){
-  $('#articles').append(a.toHtml());
-  $('#author-filter').append(a.authorFilterToHtml());
-  $('#category-filter').append(a.categoryFilterToHtml());
+ourLocalData.forEach(function(ele) {
+  articles.push(new Article(ele));
 });

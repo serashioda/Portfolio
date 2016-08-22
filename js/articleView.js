@@ -9,9 +9,9 @@ articleView.render = function() {
       $('#category-filter').append(a.toHtml('#category-filter-template'));
     };
   });
-  $('pre code').each(function(i, block) {
-    hljs.highlightBlock(block);
-  });
+  // $('pre code').each(function(i, block) {
+  //   hljs.highlightBlock(block);
+  // });
 };
 
 articleView.handleAuthorFilter = function() {

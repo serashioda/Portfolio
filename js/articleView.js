@@ -62,7 +62,6 @@ articleView.setTeasers = function() {
     $(this).parent().find('*').show();
     $(this).hide();
   });
-
 };
 
 // articleView.populateFilters();

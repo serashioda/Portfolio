@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
+  <head>
     <meta charset="UTF-8">
     <title>Sera Shioda Smith</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -11,40 +11,29 @@
     <link rel="stylesheet" href="styles/css/module.css">
     <link rel="icon" type="image/x-icon" href="https://i.imgur.com/7v5ASc8.png">
     <link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
-    <script id="articles-template" type="text/x-handlebars-template">
-          <article class="clearfix" data-author="{{author}}" data-category="{{category}}">
-            <header>
-              <h1>{{title}}</h1>
-              <div class="byline">
-                By <address><a href="{{authorUrl}}">{{author}}</a></address>
-                {{publishStatus}}
-              </div>
-            </header>
-            <section class="article-body">{{{body}}}</section>
-            <a href="#" class="read-on">Read on &rarr;</a>
-          </article>
-        </script>
-        <!--
-            STRETCH! Look at all that duplicated code in our
-            populateFilters method! Looks like a good opportunity
-            to use a template. Make two small templates for an
-            option element (one for author, one for category), and
-            render the list once you have data to populate it with.
-           -->
-        <!--////// BEGIN AUTHOR-FILTER TEMPLATE -->
-        <script id="author-filter-template" type="text/x-handlebars-template">
-          <option value="{{author}}">{{author}}</option>
-        </script>
-        <!--////// END AUTHOR-FILTER TEMPLATE -->
-        <!--////// BEGINE CATEGORY-FILTER TEMPLATE //////-->
-        <script id="category-filter-template" type="text/x-handlebars-template">
-          <option value="{{category}}">{{category}}</option>
-        </script>
-        <!--////// END CATEGORY-FILTER TEMPLATE //////-->
-  </head>
-  <body>
-    <header>
-      <nav class="main-nav">
+    <script id="article-template" type="text/x-handlebars-template">
+        <article class="clearfix" data-author="{{author}}" data-category="{{category}}">
+          <header>
+            <h1>{{title}}</h1>
+            <div class="byline">
+              By <address><a href="{{authorUrl}}">{{author}}</a></address>
+              {{publishStatus}}
+            </div>
+          </header>
+          <section class="article-body">{{{body}}}</section>
+          <a href="#" class="read-on">Read on &rarr;</a>
+        </article>
+      </script>
+      <script id="author-filter-template" type="text/x-handlebars-template">
+        <option value="{{author}}">{{author}}</option>
+       </script>
+       <script id="category-filter-template" type="text/x-handlebars-template">
+        <option value="{{category}}">{{category}}</option>
+       </script>
+    </head>
+    <body>
+      <header class="site-header clearfix">
+        <nav class="main-nav">
           <div class="icon-menu"></div>
           <ul>
             <li><a href="https://github.com/serashioda" class="icon-github">GitHub</a></li>
@@ -59,40 +48,36 @@
         </header>
       </section>
         <!-- <h1><img src="images/sera.jpg" id="me"/></h1> -->
-    <!-- // LAB 3 // -->
-    <main>
-      <div>
+      <main>
         <section id="articles" class="tab-content">
-          <!-- ////AUTHOR MENU//// -->
-          <ul id="filters">
-            <li>
-              <select id="author-filter">
-                <option value="">-- Filter by Authors --</option>
-              </select>
-            </li>
-
-         <!-- ////CATEGORY MENU//// -->
-          <li>
-            <select id="category-filter">
-              <option value="">-- Filter by Categories --</option>
-            </select>
-          </li>
-        </ul>
-
-        <article class="template" data-category="placeholder-category">
+          <div>
+            <ul id="filters">
+              <li>
+                <select id="author-filter">
+                  <option value="">-- Filter by Authors --</option>
+                </select>
+              </li>
+              <li>
+                <select id="category-filter">
+                  <option value="">-- Filter by Categories --</option>
+                </select>
+              </li>
+            </ul>
+          </div>
+        </section>
+        <section id="about" class="tab-content">
           <header>
-            <h1>Title</h1>
-            <div class="byline">
-              By <address><a href="">Author Name</a></address>
-              published <time pubdate datetime="2000-01-01">Publish Time</time>
-            </div>
+            Welcome to my Blog
           </header>
-          <section class="article-body"></section>
-          <a href="#" class="read-on">Read on &rarr;</a>
-        </article>
-      </section>
-    </div>
- <!-- // LAB 03 // -->
+        <section>
+          <h1>Some of my interests:</h1>
+            <ul>
+              <li>Coding</li>
+              <li>Sharing what I've learned</li>
+              <li>Hanging with my family</li>
+            </ul>
+          </section>
+        </section>
 
       <div id = "display">
         <a href="http://www.google.com"><img id="bento" src="images/bento.jpg" id="bento"/></a>
@@ -118,25 +103,14 @@
           <img src="http://placehold.it/150x100">
         </section>
       </div>
-
-        <!--<section id="articles">
-          <article class="template" data-category="placeholder-category">
-            <header>
-              <h1>Title</h1>
-              <div class="byline">
-                By <address><a href="">Author Name</a></address>
-                published <time pubdate datetime="2000-01-01">Publish Time</time>
-              </div>
-            </header>
-            <section class="article-body"></section>
-          </article>
-        </section>-->
-
     </main>
     <footer>
       &copy; 2016 Sera Shioda Smith | Portfolio | CodeFellows 301
     </footer>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.4/handlebars.js"></script>
+    <script src="vendor/scripts/marked.js"></script>
+    <script src="vendor/scripts/highlight.pack.js"></script>
     <script src="js/blogArticles.js"></script>
     <script src="js/article.js"></script>
     <script src="js/articleView.js"></script>

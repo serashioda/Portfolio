@@ -8,6 +8,7 @@ body {
   color: #323;
   opacity: 0.8;
   font-size: 100%;
+  background-color: #fff;
 }
 
 main {
@@ -48,7 +49,7 @@ header h2 {
   max-width: 75%;
   border-width: 1px;
   padding-left: 5%;
-  border: dotted .5em orange;
+  border: dotted .1em orange;
 }
 
 #me {
@@ -81,7 +82,7 @@ header h2 {
 
 #extra {
   margin-top: 10%;
-  border: dotted .5em orange;
+  border: dotted .1em orange;
 }
 
 #block {
@@ -91,7 +92,7 @@ header h2 {
 
 #articles{
   margin-top: 25%;
-  border: dotted .5em grey;
+  border: dotted .2em grey;
 
 footer {
   padding-top: 0.5%;

@@ -1,19 +1,6 @@
 //  Configure a view object, to hold all our functions for dynamic updates and article-related event handlers.
 var articleView = {};
 
-articleView.render = function() {
-  articles.forEach(function(a) {
-    $('#articles').append(a.toHtml('#article-template'));
-    $('#author-filter').append(a.toHtml('#author-filter-template'));
-    if($('#category-filter option[value="' + a.category + '"]').length === 0) {
-      $('#category-filter').append(a.toHtml('#category-filter-template'));
-    };
-  });
-  // $('pre code').each(function(i, block) {
-  //   hljs.highlightBlock(block);
-  // });
-};
-
 articleView.handleAuthorFilter = function() {
   $('#author-filter').on('change', function() {
     if ($(this).val()) {

@@ -11,6 +11,8 @@ function Article (opts) {
   this.authorUrl = opts.authorUrl;
 }
 
+Article.allArticles = [];
+
 // ADD PROPERTIES USED BY TEMPLATE . EXCUTE LOGIC HERE SINCE TEMPLATE CAN'T HOLD JS LOGIC. ADD RESULT TO OBJECT AS NEW PROPERTY BY KEY IN TEMPLATE. //
 Article.prototype.toHtml = function(scriptTemplateId) {
   var templateRender = Handlebars.compile($(scriptTemplateId).html());
@@ -22,9 +24,13 @@ Article.prototype.toHtml = function(scriptTemplateId) {
 };
 
 // sorting article from newest
-ourLocalData.sort(function(firstElement, secondElement) {
-  return (new Date(secondElement.publishedOn)) - (new Date(firstElement.publishedOn));
-});
+Article.loadAll = function(inputData) {
+  inputData.sort(function(a,b) {
+    return (new Date(b.publishedOn)) - (new Date(a.publishedOn));
+  }).forEach(function(ele) {
+    Article.allArticles.push(new Article(ele));
+  });
+};
 
 //
 ourLocalData.forEach(function(theCurrentArticleObject) {

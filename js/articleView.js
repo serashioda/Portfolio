@@ -68,9 +68,21 @@ articleView.setTeasers = function() {
   });
 };
 
-// articleView.populateFilters();
-articleView.render();
-articleView.handleCategoryFilter();
-articleView.handleAuthorFilter();
-articleView.handleMainNav();
-articleView.setTeasers();
+articleView.renderIndexPage = function() {
+  Article.allArticles.forEach(function(a){
+    $('#articles').append(a.toHtml('#article-template'));
+    if($('#category-filter option:contains("'+ a.category + '")').length === 0) {
+      $('#category-filter').append(a.toHtml('#category-filter-template'));
+    };
+    if($('#author-filter option:contains("'+ a.author + '")').length === 0) {
+      $('#author-filter').append(a.toHtml('#author-filter-template'));
+    };
+  });
+  articleView.handleCategoryFilter();
+  articleView.handleAuthorFilter();
+  articleView.handleMainNav();
+  articleView.setTeasers();
+};
+
+// TODO: DONE! invoke the retrieval process for our data!
+Article.fetchAll();

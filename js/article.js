@@ -23,23 +23,18 @@ Article.prototype.toHtml = function(scriptTemplateId) {
   return templateRender(this);
 };
 
-// sorting article from newest
-Article.loadAll = function(inputData) {
-  inputData.sort(function(a,b) {
-    return (new Date(b.publishedOn)) - (new Date(a.publishedOn));
-  }).forEach(function(ele) {
-    Article.allArticles.push(new Article(ele));
-  });
+// THIS ADDS FUNCTIONALITY TO RETRIEVE DATA FROM LOCAL OR REMOTE SOURCE, WHICH PROCESS AND HANDS OFF CONTROL TO THE VIEW
+Article.fetchAll = function() {
+
+  if (localStorage.hackerIpsum) {
+    Article.loadAll(JSON.parse(localStorage.hackerIpsum));
+    articleView.renderIndexPage();
+  } else {
+    $.getJSON('data/hackerIpsum.json', function(data, status, XHR) {
+      localStorage.hackerIpsum = JSON.stringify(data);
+      console.log(data);
+      Article.loadAll(data);
+      articleView.renderIndexPage();
+    });
+  };
 };
-
-//
-ourLocalData.forEach(function(theCurrentArticleObject) {
-  articles.push(new Article(theCurrentArticleObject));
-});
-
-//LOOPS THROUGH ARRAY OF ARTICLES AND APPENDS RESPECTIVE PROPERTY TO APPROPRIATE DOM ELEMENT
-articles.forEach(function(a){
-  $('#articles').append(a.toHtml());
-  $('#author-filter').append(a.authorFilterToHtml());
-  $('#category-filter').append(a.categoryFilterToHtml());
-});

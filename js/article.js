@@ -11,6 +11,8 @@ function Article (opts) {
   this.authorUrl = opts.authorUrl;
 }
 
+Article.allArticles = [];
+
 // ADD PROPERTIES USED BY TEMPLATE . EXCUTE LOGIC HERE SINCE TEMPLATE CAN'T HOLD JS LOGIC. ADD RESULT TO OBJECT AS NEW PROPERTY BY KEY IN TEMPLATE. //
 Article.prototype.toHtml = function(scriptTemplateId) {
   var templateRender = Handlebars.compile($(scriptTemplateId).html());
@@ -21,19 +23,27 @@ Article.prototype.toHtml = function(scriptTemplateId) {
   return templateRender(this);
 };
 
-// sorting article from newest
-ourLocalData.sort(function(firstElement, secondElement) {
-  return (new Date(secondElement.publishedOn)) - (new Date(firstElement.publishedOn));
-});
+//FUNCTIONALITY TO LOAD ALL ARTICLES IN DECENDING ORDER OF PUBLICATION
+Article.loadAll = function(inputData) {
+  inputData.sort(function(a,b) {
+    return (new Date(b.publishedOn)) - (new Date(a.publishedOn));
+  }).forEach(function(ele) {
+    Article.allArticles.push(new Article(ele));
+  });
+};
 
-//
-ourLocalData.forEach(function(theCurrentArticleObject) {
-  articles.push(new Article(theCurrentArticleObject));
-});
+// THIS ADDS FUNCTIONALITY TO RETRIEVE DATA FROM LOCAL OR REMOTE SOURCE, WHICH PROCESS AND HANDS OFF CONTROL TO THE VIEW
+Article.fetchAll = function() {
 
-//LOOPS THROUGH ARRAY OF ARTICLES AND APPENDS RESPECTIVE PROPERTY TO APPROPRIATE DOM ELEMENT
-articles.forEach(function(a){
-  $('#articles').append(a.toHtml());
-  $('#author-filter').append(a.authorFilterToHtml());
-  $('#category-filter').append(a.categoryFilterToHtml());
-});
+  if (localStorage.hackerIpsum) {
+    Article.loadAll(JSON.parse(localStorage.hackerIpsum));
+    articleView.renderIndexPage();
+  } else {
+    $.getJSON('data/hackerIpsum.json', function(data, status, XHR) {
+      localStorage.hackerIpsum = JSON.stringify(data);
+      console.log(data);
+      Article.loadAll(data);
+      articleView.renderIndexPage();
+    });
+  };
+};

@@ -1,19 +1,6 @@
 //  Configure a view object, to hold all our functions for dynamic updates and article-related event handlers.
 var articleView = {};
 
-articleView.render = function() {
-  articles.forEach(function(a) {
-    $('#articles').append(a.toHtml('#article-template'));
-    $('#author-filter').append(a.toHtml('#author-filter-template'));
-    if($('#category-filter option[value="' + a.category + '"]').length === 0) {
-      $('#category-filter').append(a.toHtml('#category-filter-template'));
-    };
-  });
-  // $('pre code').each(function(i, block) {
-  //   hljs.highlightBlock(block);
-  // });
-};
-
 articleView.handleAuthorFilter = function() {
   $('#author-filter').on('change', function() {
     if ($(this).val()) {
@@ -68,9 +55,21 @@ articleView.setTeasers = function() {
   });
 };
 
-// articleView.populateFilters();
-articleView.render();
-articleView.handleCategoryFilter();
-articleView.handleAuthorFilter();
-articleView.handleMainNav();
-articleView.setTeasers();
+articleView.renderIndexPage = function() {
+  Article.allArticles.forEach(function(a){
+    $('#articles').append(a.toHtml('#article-template'));
+    if($('#category-filter option:contains("'+ a.category + '")').length === 0) {
+      $('#category-filter').append(a.toHtml('#category-filter-template'));
+    };
+    if($('#author-filter option:contains("'+ a.author + '")').length === 0) {
+      $('#author-filter').append(a.toHtml('#author-filter-template'));
+    };
+  });
+  articleView.handleCategoryFilter();
+  articleView.handleAuthorFilter();
+  articleView.handleMainNav();
+  articleView.setTeasers();
+};
+
+// TODO: DONE! invoke the retrieval process for our data!
+Article.fetchAll();

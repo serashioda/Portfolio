@@ -23,6 +23,15 @@ Article.prototype.toHtml = function(scriptTemplateId) {
   return templateRender(this);
 };
 
+//FUNCTIONALITY TO LOAD ALL ARTICLES IN DECENDING ORDER OF PUBLICATION
+Article.loadAll = function(inputData) {
+  inputData.sort(function(a,b) {
+    return (new Date(b.publishedOn)) - (new Date(a.publishedOn));
+  }).forEach(function(ele) {
+    Article.allArticles.push(new Article(ele));
+  });
+};
+
 // THIS ADDS FUNCTIONALITY TO RETRIEVE DATA FROM LOCAL OR REMOTE SOURCE, WHICH PROCESS AND HANDS OFF CONTROL TO THE VIEW
 Article.fetchAll = function() {
 

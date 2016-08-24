@@ -39,11 +39,10 @@ Article.fetchAll = function() {
     Article.loadAll(JSON.parse(localStorage.hackerIpsum));
     articleView.renderIndexPage();
   } else {
-    $.getJSON('data/hackerIpsum.json', function(data, status, XHR) {
-      localStorage.hackerIpsum = JSON.stringify(data);
-      console.log(data);
-      Article.loadAll(data);
-      articleView.renderIndexPage();
+    $.getJSON('data/blogArticles.json', function(data, status, XHR) {
+     localStorage.hackerIpsum = JSON.stringify(data);
+    Article.loadAll(data);
+    articleView.renderIndexPage();
     });
-  };
+  }
 };

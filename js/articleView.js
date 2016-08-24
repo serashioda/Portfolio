@@ -1,3 +1,4 @@
+(function(module) {
 //  Configure a view object, to hold all our functions for dynamic updates and article-related event handlers.
 var articleView = {};
 
@@ -39,6 +40,8 @@ articleView.handleMainNav = function () {
 };
 
 articleView.setTeasers = function() {
+  $('h2').prev('p').remove();
+  $('h2').next('p').remove();
   $('.article-body *:nth-of-type(n+2)').hide();
   $('article').on('click', 'a.read-on', function(e) {
     e.preventDefault();
@@ -59,11 +62,12 @@ articleView.renderIndexPage = function() {
   Article.allArticles.forEach(function(a){
     $('#articles').append(a.toHtml('#article-template'));
     if($('#category-filter option:contains("'+ a.category + '")').length === 0) {
-      $('#category-filter').append(a.toHtml('#category-filter-template'));
+      $('#category-filter').append(a.toHtml('#category-filter-template')));
     };
     if($('#author-filter option:contains("'+ a.author + '")').length === 0) {
       $('#author-filter').append(a.toHtml('#author-filter-template'));
     };
+    $('#articles').append(a.toHtml($('#article-template')));
   });
   articleView.handleCategoryFilter();
   articleView.handleAuthorFilter();
@@ -71,5 +75,8 @@ articleView.renderIndexPage = function() {
   articleView.setTeasers();
 };
 
-// TODO: DONE! invoke the retrieval process for our data!
-Article.fetchAll();
+// Invoke the retrieval process for our data!
+  Article.fetchAll(articleView.renderIndexPage);
+
+  module.articleView = articleView;
+})(window);

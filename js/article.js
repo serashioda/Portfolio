@@ -1,3 +1,4 @@
+// CREATING PULL REQUEST FOR SELF-REVIEW/ CLASS_9 PORTFOLIO ASSIGNMENT
 (function(module) {
   // DONE: Wrap the entire contents of this file in an IIFE.
   // Pass in to the IIFE a module, upon which objects can be attached for later access.

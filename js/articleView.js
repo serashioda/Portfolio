@@ -1,6 +1,6 @@
 (function(module) {
 
-  //  Configure a view object, to hold all our functions for dynamic updates and article-related event handlers.
+  //  CONFIGURE A VIEW OBJECT TO HOLD ALL FUNCTIONS FOR DYNAMIC UPDATES AND ARTICLE-RELATED EVENT HANDLERS.
   var articleView = {};
 
   articleView.handleAuthorFilter = function() {

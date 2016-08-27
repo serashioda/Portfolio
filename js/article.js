@@ -1,17 +1,22 @@
 // CREATING PULL REQUEST FOR SELF-REVIEW/ CLASS_9 PORTFOLIO ASSIGNMENT
-(function(module) {
-  // DONE: Wrap the entire contents of this file in an IIFE.
-  // Pass in to the IIFE a module, upon which objects can be attached for later access.
+/* TODO:
+1) I NEED TO SEE IF THERE ARE OTHER WAYS TO USE HANDLEBARS  AND IF I AM EFFICIENTLY USING THIS AS POSSIBLE TO MAKE MY CODE EFFICIENTLY
+2) I NEED TO UPDATE .PUBLISHEDON TO APPLY MORE TO MY PORTFOLIO--> IE. DISPLAY COMPLETION DATE FOR EACH PROJECT IN DECENDING ORDER
+3) ADD MORE COMMENTS SO I CAN LOGICALLY FOLLOW/APPRECIATE MY CODE AND ALL FOLDERS/FILES, SO I CAN TRULY APPRECIATE HOW THEY ARE DYNAMICALLY WORKING TOGETHER
+4) GET RID OF ANY GHOST CODE, REFACTOR WHERE POSSIBLE*/
 
+// WRAP ENTIRE CONTENTS OF THIS FILE IN AN IIFE. PASS IN MODULE TO IFFE (which objects can be attached for later access)
+(function(module) {
   function Article (opts) {
     for (key in opts) {
       this[key] = opts[key];
     }
   }
 
+//ALL ARTICLES ARRAY
   Article.allArticles = [];
 
-  // ADD PROPERTIES USED BY TEMPLATE . EXCUTE LOGIC HERE SINCE TEMPLATE CAN'T HOLD JS LOGIC. ADD RESULT TO OBJECT AS NEW PROPERTY BY KEY IN TEMPLATE. //
+// ADD PROPERTIES USED BY TEMPLATE. EXCUTE LOGIC HERE SINCE TEMPLATE CAN'T HOLD JS LOGIC. ADD RESULT TO OBJECT AS NEW PROPERTY BY KEY IN TEMPLATE.
   Article.prototype.toHtml = function(scriptTemplateId) {
     var template = Handlebars.compile($(scriptTemplateId).text());
     var minuteRead = Math.floor(Article.getNumWords(this) / 200);   // calculate article read time using average reader speed (200wpm)
@@ -22,7 +27,7 @@
     return template(this);
   };
 
-  //FUNCTIONALITY TO LOAD ALL ARTICLES IN DECENDING ORDER OF PUBLICATION
+//FUNCTIONALITY TO LOAD ALL ARTICLES IN DECENDING ORDER OF PUBLICATION
   Article.loadAll = function(inputData) {
     var articles = inputData.sort(function(a,b) {
       return (new Date(b.publishedOn)) - (new Date(a.publishedOn));
@@ -32,7 +37,7 @@
     Article.allArticles = articles;
   };
 
-  // THIS ADDS FUNCTIONALITY TO RETRIEVE DATA FROM LOCAL OR REMOTE SOURCE, WHICH PROCESS AND HANDS OFF CONTROL TO THE VIEW ********
+// THIS ADDS FUNCTIONALITY TO RETRIEVE DATA FROM LOCAL OR REMOTE SOURCE, WHICH PROCESS AND HANDS OFF CONTROL TO THE VIEW ********
   Article.fetchAll = function(nextFunction) {
     //if (localStorage.blogArticles) {
     $.ajax({
@@ -44,12 +49,11 @@
           Article.getAll(nextFunction); // DONE: pass 'nextFunction' into Article.getAll();
         } else {
           Article.loadAll(JSON.parse(localStorage.blogArticles));
-          // DONE: Replace the following line with 'nextFunction' and invoke it!
+          // Replace the following line with 'nextFunction' and invoke.
           nextFunction();
         }
       }
     });
-  //  }
   };
 
   Article.getAll = function(nextFunction) {
@@ -57,12 +61,12 @@
       localStorage.eTag = xhr.getResponseHeader('eTag');
       Article.loadAll(responseData);
       localStorage.blogArticles = JSON.stringify(responseData);
-      // DONE invoke our parameter.
+      // Invoke our parameter.
       nextFunction();
     });
   };
 
-  // Gets the number of words in a given article
+  // GETS # OF WORDS IN GIVEN ARTICLE
   Article.getNumWords = function(article) {
     return article.body.split(' ').length;
   };

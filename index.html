@@ -1,3 +1,8 @@
+<!--TODO:
+1) CLEAN UP ALL LINTER ERRORS
+2) MADE SURE HTML LAID OUT PROPERLY. IE. PARENTS/CHILDREN IN LOGICAL ORDER WITH PROPER INDENTATION
+3) MAKE SURE DIVS, SECTIONS ARE USED PROPERLY TO CREATE 'BOXES' FOR EASIER MANIPULATION VIA css -->
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -16,8 +21,8 @@
           <header>
             <h1>{{title}}</h1>
             <div class="byline">
-              By <address><a href="{{authorUrl}}">{{author}}</a></address>
-              {{publishStatus}}
+              By <address><a href="{{authorUrl}}">{{author}}</a></address> {{publishStatus}}<br/>
+              <small>Read Time: {{readLength}}</small>
             </div>
           </header>
           <section class="article-body">{{{body}}}</section>
@@ -109,12 +114,12 @@
     <footer>
       &copy; 2016 Sera Shioda Smith | Portfolio | CodeFellows 301
     </footer>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+    <script src="js/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.4/handlebars.js"></script>
-    <script src="vendor/marked.js"></script>
-    <script src="vendor/highlight.pack.js"></script>
-    <script src="js/blogArticles.js"></script>
+    <script src="styles/vendor/marked.js"></script>
+    <script src="styles/vendor/highlight.pack.js"></script>
     <script src="js/article.js"></script>
     <script src="js/articleView.js"></script>
+    <script src="js/jquery.min.js"></script>
   </body>
 </html>

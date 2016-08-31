@@ -1,15 +1,15 @@
-<!--TODO:
+<!--
+TODO:
 1) CLEAN UP ALL LINTER ERRORS
 2) MADE SURE HTML LAID OUT PROPERLY. IE. PARENTS/CHILDREN IN LOGICAL ORDER WITH PROPER INDENTATION
 3) MAKE SURE DIVS, SECTIONS ARE USED PROPERLY TO CREATE 'BOXES' FOR EASIER MANIPULATION VIA css -->
-
 <!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8">
     <title>Sera Shioda Smith</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="styles/vendor/normalize.css">
+    <link rel="stylesheet" href="vendor/styles/normalize.css">
     <link rel="stylesheet" href="styles/css/base.css">
     <link rel="stylesheet" href="styles/css/style.css">
     <link rel="stylesheet" href="styles/css/layout.css">
@@ -49,12 +49,16 @@
       <img src="images/scenic.jpg" id="scenic">
       <section id="porttxt">
         <header>
-          <h2><p id="porttxt"> Portfolio | Sera Shioda Smith | <a href="https://github.com/serashioda" class="icon-github"></a> @serashioda </p></h2>
+          <h2><p id="porttxt"> Portfolio | Sera Shioda Smith | <a href="https://github.com/serashioda" class="icon-github"></a> @serashioda
+          | <a href="/">Articles</a>
+          | <a href="/about">About Me</a>
+        </p></h2>
         </header>
       </section>
         <!-- <h1><img src="images/sera.jpg" id="me"/></h1> -->
       <main>
         <section id="articles" class="tab-content">
+          <h1>Articles</h1>
           <div>
             <ul id="filters">
               <li>
@@ -71,11 +75,8 @@
           </div>
         </section>
         <section id="about" class="tab-content">
-          <header>
-            #
-          </header>
         <section>
-          <h1>Some of my interests:</h1>
+          <h1>About Me</h1>
             <ul>
               <li>Shiba Inu's = family</li>
               <li>Coding</li>
@@ -114,20 +115,18 @@
     <footer>
       &copy; 2016 Sera Shioda Smith | Portfolio | CodeFellows 301
     </footer>
-    <script src="js/jquery.min.js"></script>
+    <script src="vendor/scripts/jquery.min.js"></script>
+    <script src="vendor/scripts/page.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.4/handlebars.js"></script>
-    <script src="styles/vender/page.js"></script>
-    <script src="styles/vendor/handlebars.js"></script>
-    <script src="styles/vendor/marked.js"></script>
-    <script src="styles/vendor/highlight.pack.js"></script>
-    <script src="styles/vendor/webdb.js"></script>
+    <script src="vendor/scripts/handlebars.js"></script>
+    <script src="vendor/scripts/marked.js"></script>
+    <script src="vendor/scripts/highlight.pack.js"></script>
     <script src="js/article.js"></script>
     <script src="js/articleView.js"></script>
-    <script src="js/jquery.min.js"></script>
-    //controllers
+    <!-- controllers -->
     <script src="js/controllers/aboutController.js"></script>
     <script src="js/controllers/articleController.js"></script>
     <!-- <script src="scripts/controllers/adminController.js"></script> -->
     <script src="js/controllers/routes.js"></script>
   </body>
-</html> 
+</html>

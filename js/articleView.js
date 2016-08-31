@@ -77,8 +77,5 @@
     articleView.setTeasers();
   };
 
-// Invoke the retrieval process for our data!
-  Article.fetchAll(articleView.renderIndexPage);
-
   module.articleView = articleView;
 })(window);

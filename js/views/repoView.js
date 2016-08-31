@@ -10,9 +10,7 @@
       .map(repoCompiler)
     );
   };
-// CALLS THE FUNCTION THAT REQUESTS/LOADS MY REPO DATA
-    Pass in some view function as a higher order callback, so our repos
-    will render after the data is loaded. */
+// CALLS THE FUNCTION THAT REQUESTS/LOADS MY REPO DATA- pass in some view function as a higher order callback, so our repos will render after the data is loaded. */
   reposObj.requestRepos(repoView.renderRepos);
   module.repoView = repoView;
 })(window);

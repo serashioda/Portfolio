@@ -5,13 +5,13 @@
   reposObj.followers = [];
   //CALLBACK FUNCTION AFTER AJAX REQUEST FOR MY REPO DATA, CALLBACK IS CALLED WHEN LOAD IS COMPLETED
   $.when(
-    $.get('https://api.github.com/users/codefellows-seattle-301d10/repos' +
+    $.get('/github/users/serashioda/repos' +
           '?per_page=10' +
           '&sort=updatd')
           .done(function(data) {
             reposObj.allRepos = data;
           }),
-    $.get('/github.'+
+    $.get('/github/users/serashioda/followers'+
           '?per_page=10' +
           '&sort=updatd')
           .done(function(data) {

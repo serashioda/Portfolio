@@ -3,7 +3,6 @@
 
   reposObj.allRepos = [];
   reposObj.followers = [];
-// create a githubToken.js file that we can use to generate our headers properly.
   //CALLBACK FUNCTION AFTER AJAX REQUEST FOR MY REPO DATA, CALLBACK IS CALLED WHEN LOAD IS COMPLETED
   $.when(
     $.get('https://api.github.com/users/codefellows-seattle-301d10/repos' +

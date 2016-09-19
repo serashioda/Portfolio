@@ -13,50 +13,33 @@ function Article (opts) {
 
 // USING JQUERY TO TO FILL IN TEMPLATE CLONE WITH PROPERTIES FROM THE PARTICULAR ARTICLE INSTANCE
 Article.prototype.toHtml = function() {
-  /* TODO: DONE- Now use jQuery t fill in the rest of the current template
-  clone with properties from this particular Article instance.
-  We need to fill in:
-  1. author name,
-  2. author url,
-  3. article title,
-  4. article body, and */
-
   var $newArticle = $('article.template').clone();
-  console.log($newArticle);
-  // article category
-  $newArticle.attr('data-category', this.category);
-  // article author 
-  $newArticle.attr('data-author', this.author);
-  // article title
-  $newArticle.find('h1').text(this.title);
-  // article author
-  $newArticle.find('.byline a').text(this.author);
-  // article auth url
-  $newArticle.find('.byline a').attr('href', this.authorUrl);
-  // article body
-  $newArticle.find('.article-body').html(this.body);
-  // publication date
-  $newArticle.find('time[pubdate]').attr('title', this.publishedOn);
-  // display the date as a relative number of 'days ago'
-  $newArticle.find('time').html('about ' + parseInt((new Date() - new Date(this.publishedOn))/60/60/24/1000) + ' days ago');
-
-
-// removing class from this cloned article before rending current article to the DOM (b/c it is no longer a template)s
   $newArticle.removeClass('template');
+
+  $newArticle.attr('data-category', this.category);
+  // TODO: Use jQuery to also add the author name as a data-attribute of the newly cloned article.
+  //       Doing so will allow us to use selectors to target articles, based on who wrote them.
+
+  $newArticle.find('.byline a').text(this.author);
+  $newArticle.find('.byline a').attr('href', this.authorUrl);
+  $newArticle.find('h1:first').text(this.title);
+  $newArticle.find('.article-body').html(this.body);
+  $newArticle.find('time[pubdate]').attr('datetime', this.publishedOn);
+  $newArticle.find('time[pubdate]').attr('title', this.publishedOn);
+  $newArticle.find('time').text('about ' + parseInt((new Date() - new Date(this.publishedOn))/60/60/24/1000) + ' days ago');
   return $newArticle;
 };
 
 // sorting article from newest
-ourLocalData.sort(function(firstElement, secondElement) {
-  return (new Date(secondElement.publishedOn)) - (new Date(firstElement.publishedOn));
+ourLocalData.sort(function(a,b) {
+  return (new Date(b.publishedOn)) - (new Date(a.publishedOn));
 });
-
 //
-ourLocalData.forEach(function(theCurrentArticleObject) {
-  articles.push(new Article(theCurrentArticleObject));
+ourLocalData.forEach(function(ele) {
+  articles.push(new Article(ele));
 });
 
 // append each article to HTML
-articles.forEach(function(article) {
-  $('#articles').append(article.toHtml());
+articles.forEach(function(a) {
+  $('#articles').append(a.toHtml());
 });
